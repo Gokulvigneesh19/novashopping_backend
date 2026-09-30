@@ -36,12 +36,12 @@ def env_list(name, default=""):
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ["SECRET_KEY"]
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env_bool("DEBUG")
-
-ALLOWED_HOSTS = env_list("ALLOWED_HOSTS")
-
+ALLOWED_HOSTS = env_list(
+    "ALLOWED_HOSTS",
+    "localhost,127.0.0.1"
+)
 
 # Application definition
 
@@ -86,7 +86,10 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=int(os.environ.get("JWT_ACCESS_TOKEN_MINUTES", 60))),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=int(os.environ.get("JWT_REFRESH_TOKEN_DAYS", 7))),
 }
-CORS_ALLOWED_ORIGINS = env_list("CORS_ALLOWED_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")
+CORS_ALLOWED_ORIGINS = env_list(
+    "CORS_ALLOWED_ORIGINS",
+    "http://localhost:3000,http://127.0.0.1:3000,https://shoppingdemo-eight.vercel.app"
+)
 CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_NAME = "sessionid"
 SESSION_COOKIE_HTTPONLY = True
@@ -161,6 +164,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
