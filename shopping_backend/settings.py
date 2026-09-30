@@ -88,7 +88,7 @@ SIMPLE_JWT = {
 }
 CORS_ALLOWED_ORIGINS = env_list(
     "CORS_ALLOWED_ORIGINS",
-    "http://localhost:3000,http://127.0.0.1:3000,https://shoppingdemo-eight.vercel.app"
+    "http://localhost:3000,http://127.0.0.1:3000"
 )
 CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_NAME = "sessionid"
