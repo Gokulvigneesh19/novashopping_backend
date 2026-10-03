@@ -87,11 +87,17 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=int(os.environ.get("JWT_ACCESS_TOKEN_MINUTES", 60))),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=int(os.environ.get("JWT_REFRESH_TOKEN_DAYS", 7))),
 }
-CORS_ALLOWED_ORIGINS = env_list(
-    "CORS_ALLOWED_ORIGINS",
-    "http://localhost:3000,http://127.0.0.1:3000"
-)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
 CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
 SESSION_COOKIE_NAME = "sessionid"
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = env_bool("SESSION_COOKIE_SECURE")
